@@ -1,5 +1,6 @@
 # iot-webapp-2025
-IoT 개발자 과정 **ASP.NET_Core** 학습 리포지토리
+
+<p>IoT 개발자 과정 <a href="https://dotnet.microsoft.com/ko-kr/apps/aspnet" target="_blank" style="color:red;">ASP.NET Core</a> 학습 리포지토리</p>
 
 ## 1일차 
 
