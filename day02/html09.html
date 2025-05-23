@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-
-    /JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         // window.load = function() {}
         $(document).ready(function () {
@@ -23,10 +23,8 @@
 
             // 모든 div 스타일 적용
             $('div').each(function(i)  {
-                $(this).css({
-                    height: '3px',
-                    backgroundColor: `rgb(${i}, ${i}, ${i})`
-                })
+                $(this).css('height', '3px');
+                $(this).css('background-color', `rgb(${i}, ${i}, ${i})`);
             });
         }
     </script>

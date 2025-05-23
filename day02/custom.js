@@ -1,7 +1,9 @@
 $(document).ready(function() {
-    $("#btnEffect").on('click', function() {
+    $("#btnEffect").mouseenter(function() {
         alert("클릭함!");
     });
+    
+    // 박스변형 이벤트
     $("#box").css({
         width: 100,
         height: 100,
@@ -17,8 +19,9 @@ $(document).ready(function() {
         });
     }).on('mouseleave', function() { // 마우스리브 이벤트
         $(this).css({
-            backgroundColor: 'orange'
-        })
+            backgroundColor: 'orange',
+            borderRadius: '0',
+        });
     })
 
     // 시각효과
