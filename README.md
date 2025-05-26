@@ -226,3 +226,59 @@
 - 새로 개발되는 웹사이트는 Valnilla JS를 사용
 
 ## 3일차
+
+### 반응형웹
+- UTF-8이 적용되기 전: 한국어웹, 영어웹, 일본어웹 등 웹페이지를 언어별로 개발해야 했음
+- 반응형 웹 이전: 모바일용, PC용, 태블릿용 등 따로 웹사이트를 개발해야 했음
+- 문제: 하나의 웹페이지 수정되면 다른 웹페이지들도 다 수정 -> 시간, 돈의 Loss
+- 하나의 웹페이지로 기기, 언어문제를 전부 해결하고자 나온 기술 중 화면쪽 -> 반응형웹
+- `Responsive Web` : 웹, 모바일 등의 기기와 해상도에 상관없이 하나의 웹으로 모두 표현할 수 있는 웹화면 개발 기술
+
+- HTML5에 반응형 웹 메타태그만 사용
+
+    ```html
+    <!DOCTYPE html>
+    ...
+    <head>
+    <!-- 반응형웹 중요태크 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+
+- 부트스트랩에서 학습
+- https://inpa.tistory.com/category/Style%20Sheet/Bootstrap5?page=2
+
+### 부트스트랩
+- 현재 전세계적으로 가장 많이 사용되는 오픈소스 CSS 프레임워크
+- 트위터 블루프린트로 시작. 트위터 웹사이트를 꾸미기 위해서 개발시작
+- 현재 5.3 버전
+- 이전에는 jQery 사용했으나 현재는 Pure JS로 전향되었음
+- [공식사이트](https://getbootstrap.com/) 
+
+#### 부트스트랩 시작
+- [시작](https://getbootstrap.com/docs/5.3/getting-started/introduction/#quick-start)
+- GetStarted에 나와있는 CSS와 JS를 웹페이지에 붙여넣기
+
+    <img src="./image/web0003.png" width="600">
+
+#### 부트스트랩 학습
+- 버튼 사용법
+
+    <img src="./image/web0004.png" widht="600">
+
+- 미디어 쿼리 : 웹페이지 사이즈에 따른 사용법을 위해 필요
+    - Bootstrap에서 sm, md, lg 등의 infix를 사용할 경우가 많음
+    - X-Small : None(사용할 이름없음) (< 576px)
+    - Small : sm (>= 576px)
+    - Medium : md (>= 786px)
+    - Large : lg (>= 992px)
+    - Extra large : xl (>= 1200px)
+    - Extra extra large : xxl (>= 1400px)
+
+- 컨테이너 : 기본 레이아웃에서 가장 중요! 그리드 스타일이라고도 부름
+    - container - 일반적인 넓이 사용. 양쪽에 여백이 존재
+    - container-fluid - 여백없이 웹페이지를 꽉채우는 스타일
+    - container > row > grid 형식으로 사용 
+    - grid는 최대 12까지 사용
+
+### 프론트엔드 활용
+- HTML5 + CSS3 + JS + BootStrap 응용예제
