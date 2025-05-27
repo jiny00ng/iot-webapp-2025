@@ -381,7 +381,7 @@
 10. 전체화면
 
 
-
+    https://github.com/user-attachments/assets/f6f1d4bb-dba2-4a9a-99ef-8523ab67573e
 
 
 ### 5일차
