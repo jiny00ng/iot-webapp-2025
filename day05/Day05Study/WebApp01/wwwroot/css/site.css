@@ -1,4 +1,4 @@
-ï»¿html {
+html {
   font-size: 14px;
 }
 
@@ -21,7 +21,7 @@ body {
   margin-bottom: 60px;
 }
 
-/* ì–´ì œ í–ˆë˜ ê±° */
+/* ¾îÁ¦ Çß´ø °Å */
 .feature {
     display: inline-flex;
     align-items: center;
