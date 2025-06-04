@@ -1,4 +1,4 @@
-﻿@using Westwind.AspNetCore.Markdown
+﻿﻿@using Westwind.AspNetCore.Markdown
 @model MyPortfolioWebApp.Models.News
 
 @{
@@ -56,12 +56,3 @@
         </div>
     </div>
 </section>
-
-@section Scripts {
-    <script src="~/dompurify/purify.min.js"></script>
-    <script>
-        const dirty = document.getElementById("rawHtml").innerHTML;
-        const clean = DOMPurify.sanitize(dirty); // HTNK울 세정해서 깨끗하게 변경
-        document.getElementById("viewer").innerHTML = clean;
-    </script>
-}
