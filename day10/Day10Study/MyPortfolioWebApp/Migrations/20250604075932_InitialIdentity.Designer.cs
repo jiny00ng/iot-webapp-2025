@@ -76,7 +76,7 @@ namespace MyPortfolioWebApp.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.CustomUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
