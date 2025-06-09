@@ -7,8 +7,8 @@ namespace MyPortfolioWebApp.Models
         [Key]
         public int Id { get; set; }
 
-        public string Langauge {  get; set; }
+        public string Language {  get; set; }
 
-        public float Level { get; set; }
+        public string Level { get; set; }
     }
 }

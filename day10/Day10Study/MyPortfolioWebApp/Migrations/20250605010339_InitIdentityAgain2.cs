@@ -103,42 +103,42 @@ namespace MyPortfolioWebApp.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            //migrationBuilder.CreateTable(
-            //    name: "News",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-            //        Writer = table.Column<string>(type: "longtext", nullable: true)
-            //            .Annotation("MySql:CharSet", "utf8mb4"),
-            //        Title = table.Column<string>(type: "longtext", nullable: false)
-            //            .Annotation("MySql:CharSet", "utf8mb4"),
-            //        Description = table.Column<string>(type: "longtext", nullable: false)
-            //            .Annotation("MySql:CharSet", "utf8mb4"),
-            //        PostDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-            //        ReadCount = table.Column<int>(type: "int", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_News", x => x.Id);
-            //    })
-            //    .Annotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Writer = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Title = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PostDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ReadCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
-            //migrationBuilder.CreateTable(
-            //    name: "Skill",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<int>(type: "int", nullable: false)
-            //            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-            //        Langauge = table.Column<string>(type: "longtext", nullable: false)
-            //            .Annotation("MySql:CharSet", "utf8mb4"),
-            //        Level = table.Column<float>(type: "float", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Skill", x => x.Id);
-            //    })
-            //    .Annotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.CreateTable(
+                name: "Skill",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Language = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Level = table.Column<float>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skill", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
