@@ -1,65 +1,141 @@
 ﻿@model IEnumerable<MyPortfolioWebApp.Models.Board>
+@inject SignInManager<CustomUser> SignInManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "자유게시판";
+
+    // 페이징 변수 (Controller에서 ViewBag에 넣어줬다고 가정)
+    var startPage = ViewBag.StartPage ?? 1;
+    var endPage = ViewBag.EndPage ?? 1;
+    var page = ViewBag.Page ?? 1;
+    var totalPage = ViewBag.TotalPage ?? 1;
+    var search = ViewBag.Search ?? "";
 }
 
-<h1>Index</h1>
+<partial name="_Notification" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Writer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contents)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReadCount)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Writer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contents)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReadCount)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<section id="board" class="section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>자유게시판</h2>
+        <p>자유롭게 의견을 나눌 수 있는 공간입니다</p>
+    </div>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-between mb-2">
+            <div class="col-3">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a asp-action="Create" class="btn btn-sm btn-success btn-kelly">작성</a>
+                }
+            </div>
+            <div class="col-6">
+                <form asp-action="Index" method="get">
+                    <div class="input-group input-group-sm justify-content-end">
+                        <input type="text" name="search" value="@search" class="form-control-sm" placeholder="검색어 입력" />
+                        <button type="submit" class="btn btn-success">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table class="board-table table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.First().Email)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Writer)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Title)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Contents)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().PostDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().ReadCount)</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="content-center">@item.Email</td>
+                        <td class="content-center">@item.Writer</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+                        </td>
+                        <td>@item.Contents</td>
+                        <td class="content-center">@item.PostDate?.ToString("yyyy년 MM월 dd일")</td>
+                        <td class="content-center">@item.ReadCount</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">수정</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">상세</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">삭제</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+        <!-- Pagination -->
+        <div class="text-center mt-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm justify-content-center">
+                    @* 첫 페이지 *@
+                    @if (page > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = 1, search = search })" aria-label="First">
+                                <span aria-hidden="true">≪</span>
+                            </a>
+                        </li>
+                    }
+
+                    @* 이전 페이지 *@
+                    @if (page > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = page - 1, search = search })" aria-label="Previous">
+                                <span aria-hidden="true">＜</span>
+                            </a>
+                        </li>
+                    }
+
+                    @* 페이지 번호 반복 *@
+                    @for (var pcount = startPage; pcount <= endPage; pcount++)
+                    {
+                        if (pcount == page)
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">@pcount</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = pcount, search = search })">@pcount</a>
+                            </li>
+                        }
+                    }
+
+                    @* 다음 페이지 *@
+                    @if (page < totalPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = page + 1, search = search })" aria-label="Next">
+                                <span aria-hidden="true">＞</span>
+                            </a>
+                        </li>
+                    }
+
+                    @* 마지막 페이지 *@
+                    @if (page != totalPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = totalPage, search = search })" aria-label="Last">
+                                <span aria-hidden="true">≫</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
