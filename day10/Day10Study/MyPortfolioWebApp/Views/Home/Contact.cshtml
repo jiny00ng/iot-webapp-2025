@@ -1,10 +1,8 @@
 ﻿@model MyPortfolioWebApp.Models.ContactModel
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
     ViewData["Title"] = "Contact";
+
 }
 
 <!-- Contact Section -->
@@ -13,7 +11,7 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>문의하기</h2>
-        <p>스카웃에 대한 문의가 있으시면 편하게 연락주세요^-^</p>
+        <p>스카웃에 대한 문의가 있으시면 편하게 연락주세요</p>
     </div><!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -27,7 +25,7 @@
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
                             <h3>주소</h3>
-                            <p>365, Sinseon-ro, Nam-gu, Busan, Republic of Korea</p>
+                            <p>부산광역시 남구 신선로 365</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -43,7 +41,7 @@
                         <i class="bi bi-envelope flex-shrink-0"></i>
                         <div>
                             <h3>이메일</h3>
-                            <p>jykim9226@naver.com</p>
+                            <p>personar95@naver.com</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -53,38 +51,36 @@
 
             <div class="col-lg-7">
                 <form asp-action="Contact" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @* <div asp-validation-summary="All" class="text-danger"></div> *@
                     <div class="row gy-4">
 
                         <div class="col-md-6">
                             <label asp-for="Name" class="pb-2">성함</label>
                             <span asp-validation-for="Name" class="text-danger"></span>
-                            <input type="text" asp-for="Name" class="form-control" required>
+                            <input type="text" asp-for="Name" class="form-control">
                         </div>
 
                         <div class="col-md-6">
                             <label asp-for="Email" class="pb-2">이메일</label>
                             <span asp-validation-for="Email" class="text-danger"></span>
-                            <input type="email" asp-for="Email" class="form-control" required>
+                            <input type="email" class="form-control" asp-for="Email">
                         </div>
 
                         <div class="col-md-12">
                             <label asp-for="Subject" class="pb-2">제목</label>
                             <span asp-validation-for="Subject" class="text-danger"></span>
-                            <input type="text" asp-for="Subject" class="form-control" required>
+                            <input type="text" class="form-control" asp-for="Subject">
                         </div>
 
                         <div class="col-md-12">
                             <label asp-for="Message" class="pb-2">메시지</label>
                             <span asp-validation-for="Message" class="text-danger"></span>
-                            <textarea asp-for="Message" class="form-control" rows="10" required></textarea>
+                            <textarea class="form-control" rows="10" asp-for="Message"></textarea>
                         </div>
 
-                        <div class="col-md-12 text-center">
-                            <div class="loading" hidden>로딩중</div>
+                        <div class="col-md-12 text-center">             
                             <div class="error-message" hidden></div>
                             <div class="sent-message" hidden>메시지를 전송했습니다. 감사합니다!</div>
-
                             <button type="submit">전송</button>
                         </div>
 
@@ -97,7 +93,3 @@
     </div>
 
 </section><!-- /Contact Section -->
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

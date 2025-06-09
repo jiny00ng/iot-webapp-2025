@@ -4,7 +4,7 @@
 @if (TempData["success"] != null)
 {
     // toastr.options로 위치나 닫기버튼 등을 수정할 수 있음
-    <script>
+    <script>        
         toastr.options = {
             "closeButton": true,
             "progressBar": true,
@@ -18,6 +18,6 @@
 @if (TempData["error"] != null)
 {
     <script>
-        toastr.erro('@TempData["error"]');
+        toastr.error('@TempData["error"]');
     </script>
 }

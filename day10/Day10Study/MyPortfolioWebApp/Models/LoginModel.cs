@@ -13,4 +13,3 @@ namespace MyPortfolioWebApp.Models
         public string Password { get; set; }
     }
 }
-

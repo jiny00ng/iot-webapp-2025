@@ -1,4 +1,4 @@
-ï»¿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolioWebApp.Models;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ namespace MyPortfolioWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context; // DBì—°ë™
+        private readonly ApplicationDbContext _context; // DB¿¬µ¿
 
         public HomeController(ApplicationDbContext context)
         {
@@ -23,14 +23,14 @@ namespace MyPortfolioWebApp.Controllers
 
         public async Task<IActionResult> About()
         {
-            // ì •ì  HTMLì„ DB ë°ì´í„°ë¡œ ë™ì ì²˜ë¦¬
-            // DBì—ì„œ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¨ ë’¤ About, Skill ê°ì²´ì— ë°ì´í„° ë‹´ì•„ì„œ ë·°ë¡œ ë„˜ê²¨ì¤Œ
+            // Á¤Àû HTMLÀ» DB µ¥ÀÌÅÍ·Î µ¿ÀûÃ³¸®
+            // DB¿¡¼­ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Â µÚ About, Skill °´Ã¼¿¡ µ¥ÀÌÅÍ ´ã¾Æ¼­ ºä·Î ³Ñ°ÜÁÜ
             var skillCount = _context.Skill.Count();
             var skill = await _context.Skill.ToListAsync();
-            // FirstAsyncëŠ” ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ì˜ˆì™¸ë°œìƒ. FirstOrDefaultAsync ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ë„ê°’
-            var about = await _context.About.FirstOrDefaultAsync();
+            // FirstAsync´Â µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é ¿¹¿Ü¹ß»ı. FirstOrDefaultAsync µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é ³Î°ª
+            var about = await _context.About.FirstOrDefaultAsync(); 
 
-            ViewBag.SkillCount = skillCount; // ex. 7ì´ ë„˜ì–´ê°
+            ViewBag.SkillCount = skillCount; // ex. 7ÀÌ ³Ñ¾î°¨
             ViewBag.ColNum = (skillCount / 2) + (skillCount % 2); // 3(7/2) + 1(7%2)
 
             var model = new AboutModel();
@@ -48,35 +48,35 @@ namespace MyPortfolioWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Contact(ContactModel model)
         {
-            if (ModelState.IsValid) // Modelì— ë“¤ì–´ê°„ ë„¤ê°œ ê°’ì´ ì œëŒ€ë¡œ ë“¤ì–´ê°”ìœ¼ë©´
+            if (ModelState.IsValid) // Model¿¡ µé¾î°£ ³×°³ °ªÀÌ Á¦´ë·Î µé¾î°¬À¸¸é
             {
                 try
                 {
-                    var smtpClient = new SmtpClient("smtp.mail.nate.com") // Gmailì„ ì‚¬ìš©í•˜ë©´ 
+                    var smtpClient = new SmtpClient("smtp.mail.nate.com") // GmailÀ» »ç¿ëÇÏ¸é 
                     {
-                        Port = 465, // ë©”ì¼ SMPT ì„œë¹„ìŠ¤í¬íŠ¸ ë³€ê²½í•„ìš”
-                        Credentials = new NetworkCredential("personar95@gmail.com", "ë¹„ë°€ë²ˆí˜¸"),
+                        Port = 465, // ¸ŞÀÏ SMPT ¼­ºñ½ºÆ÷Æ® º¯°æÇÊ¿ä
+                        Credentials = new NetworkCredential("personar95@gmail.com", "ºñ¹Ğ¹øÈ£"),
                         EnableSsl = true,
                     };
 
                     var mailMessage = new MailMessage
                     {
-                        From = new MailAddress(model.Email),  // ë¬¸ì˜í•˜ê¸°ì— ì‘ì„±í•œ ë©”ì¼ì£¼ì†Œ
-                        Subject = model.Subject ?? "[ì œëª©ì—†ìŒ]",
-                        Body = $"ë³´ë‚¸ ì‚¬ëŒ : {model.Name} ({model.Email})\n\në©”ì‹œì§€ : {model.Message}",
-                        IsBodyHtml = false,  // ë©”ì¼ ë³¸ë¬¸ì— HTMLíƒœê·¸ë¥¼ ì‚¬ìš©ì—¬ë¶€
+                        From = new MailAddress(model.Email),  // ¹®ÀÇÇÏ±â¿¡ ÀÛ¼ºÇÑ ¸ŞÀÏÁÖ¼Ò
+                        Subject = model.Subject ?? "[Á¦¸ñ¾øÀ½]",
+                        Body = $"º¸³½ »ç¶÷ : {model.Name} ({model.Email})\n\n¸Ş½ÃÁö : {model.Message}",
+                        IsBodyHtml = false,  // ¸ŞÀÏ º»¹®¿¡ HTMLÅÂ±×¸¦ »ç¿ë¿©ºÎ
                     };
 
-                    mailMessage.To.Add("personar95@naver.com");  // ë°›ì„ ë©”ì¼ì£¼ì†Œ
+                    mailMessage.To.Add("personar95@naver.com");  // ¹ŞÀ» ¸ŞÀÏÁÖ¼Ò
 
-                    await smtpClient.SendMailAsync(mailMessage); // ìœ„ ìƒì„±ëœ ë©”ì¼ê°ì²´ë¥¼ ì „ì†¡!
+                    await smtpClient.SendMailAsync(mailMessage); // À§ »ı¼ºµÈ ¸ŞÀÏ°´Ã¼¸¦ Àü¼Û!
                     ViewBag.Success = true;
                 }
                 catch (Exception ex)
                 {
                     ViewBag.Success = false;
-                    ViewBag.Error = $"ë©”ì¼ì „ì†¡ ì‹¤íŒ¨! {ex.Message}";
-                }
+                    ViewBag.Error = $"¸ŞÀÏÀü¼Û ½ÇÆĞ! {ex.Message}";
+                }                
             }
 
             return View();

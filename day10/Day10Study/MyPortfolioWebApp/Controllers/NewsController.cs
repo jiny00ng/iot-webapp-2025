@@ -109,12 +109,12 @@ namespace MyPortfolioWebApp.Controllers
         [ValidateAntiForgeryToken]
         // <form asp-controller="News" asp-action="Create"> 이 http://localhost:5234/News/Create 포스트메서드 호출
         public async Task<IActionResult> Create([Bind("Id,Title,Description")] News news)
-        {
+        { 
             if (ModelState.IsValid)
             {
                 news.Writer = "관리자"; // 작성자는 자동으로 관리자
                 news.PostDate = DateTime.Now; // 게시일자는 현재
-                news.ReadCount = 0;
+                news.ReadCount = 0; 
 
                 // INSERT INTO...
                 _context.Add(news);

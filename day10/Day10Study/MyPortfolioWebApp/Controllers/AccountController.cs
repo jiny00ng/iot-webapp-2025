@@ -33,10 +33,9 @@ namespace MyPortfolioWebApp.Controllers
             {
                 // Id를 이메일로 사용하겠다
                 // 나중에 속성 추가
-                var user = new CustomUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
+                var user = new CustomUser { 
+                    UserName = model.Email, 
+                    Email = model.Email, 
                     City = model.City,
                     Mobile = model.Mobile,
                     Hobby = model.Hobby,
@@ -47,7 +46,7 @@ namespace MyPortfolioWebApp.Controllers
                 {
                     // 위의 저장한 유저로 로그인,
                     // isPersistent 로그인상태 유지. false하면 20~30분 동안 사용안하면 로그아웃
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await signInManager.SignInAsync(user, isPersistent: false); 
                     return RedirectToAction("Index", "Home");  // 첫화면으로 이동
                 }
 
@@ -70,12 +69,10 @@ namespace MyPortfolioWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) { 
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, false);
 
-                if (result.Succeeded)
-                {
+                if (result.Succeeded) { 
                     return RedirectToAction(controllerName: "Home", actionName: "Index"); // 로그인 성공하면 홈으로
                 }
 

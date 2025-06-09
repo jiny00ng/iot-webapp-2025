@@ -189,7 +189,7 @@ namespace MyPortfolioWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PhtoUrl")
+                    b.Property<string>("PhotoUrl")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -321,13 +321,12 @@ namespace MyPortfolioWebApp.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Language")
+                    b.Property<string>("Langauge")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<float>("Level")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

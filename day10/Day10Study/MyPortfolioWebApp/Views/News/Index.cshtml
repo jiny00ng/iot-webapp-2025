@@ -1,5 +1,5 @@
 ﻿@inject SignInManager<CustomUser> SignInManager
-@inject UserManager<CustomUser> UserManager
+@inject UserManager<CustomUser> UserManger
 @model IEnumerable<MyPortfolioWebApp.Models.News>
 
 @{
@@ -32,7 +32,7 @@
                 {
                     <a asp-controller="News" asp-action="Create"
                        class="btn btn-sm btn-success btn-kelly">작성</a>
-                }
+                }                
             </div>
             <div class="col-6">
                 <form asp-action="Index" method="get">
@@ -60,7 +60,7 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ReadCount)
-                    </th>
+                    </th>                   
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +81,7 @@
                         </td>
                         <td class="content-center">
                             @Html.DisplayFor(modelItem => item.ReadCount)
-                        </td>
+                        </td>                        
                     </tr>
                 }
             </tbody>
@@ -93,7 +93,7 @@
                     @if (page > 1) // 첫페이지 버튼
                     {
                         <li class="page-item"><a href="?page=1&search=@search" class="page-link">≪</a></li>
-                    }
+                    }                 
 
                     @if (page > 1) // 이전페이지 버튼
                     {
@@ -102,17 +102,17 @@
 
                     @for (var pcount = startPage; pcount <= endPage; pcount++)
                     {
-                        if (pcount == page)
+                        if (pcount == page)                       
                         {
                             <li class="page-item"><a href="?page=@pcount&search=@search" class="page-link active">@pcount</a></li>
                         }
-                        else
+                        else 
                         {
                             <li class="page-item"><a href="?page=@pcount&search=@search" class="page-link">@pcount</a></li>
                         }
                     }
 
-                    @if (page < totalPage) // 다음페이지
+                    @if (page <totalPage) // 다음페이지
                     {
                         <li class="page-item"><a href="?page=@(page + 1)&search=@search" class="page-link">＞</a></li>
                     }
@@ -125,6 +125,6 @@
             </div>
         </div>
     </div>
-
+    
 
 </section>

@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-8 content">
                 <h2>@Model.About.Title</h2>
-                <p class="fst-italic py-3">
+                <p class="fst-italic py-3">                    
                 </p>
                 <div class="row">
                     <div class="col-lg-6">
@@ -80,7 +80,7 @@
             <div class="col-lg-6">
                 @{
                     // Model.Skill 객체가 Dynamic타입이라서 List로 형변환
-                    var skills = Model.Skill.ToList();
+                    var skills = Model.Skill.ToList(); 
                 }
 
                 @for (var i = 0; i < colNum; i++)

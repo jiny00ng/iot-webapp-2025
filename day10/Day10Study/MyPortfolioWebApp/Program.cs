@@ -1,4 +1,4 @@
-ï»¿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolioWebApp.Models;
 using System.Runtime;
@@ -13,28 +13,28 @@ namespace MyPortfolioWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            // DBì—°ê²° ì´ˆê¸°í™” ì„¤ì •
+            // DB¿¬°á ÃÊ±âÈ­ ¼³Á¤
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
                 builder.Configuration.GetConnectionString("SmartHomeConnection"),
                 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SmartHomeConnection"))
             ));
 
-            // ASP.NET Core Identity ì„¤ì •
-            // ì›ë³¸ì€ IdentityUser -> CustomUser ë¡œ ë³€ê²½
+            // ASP.NET Core Identity ¼³Á¤
+            // ¿øº»Àº IdentityUser -> CustomUser ·Î º¯°æ
             builder.Services.AddIdentity<CustomUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // íŒ¨ìŠ¤ì›Œë“œ ì •ì±…
-            // ë³€ê²½ ì „. ìµœëŒ€ 6ìë¦¬ ì´ìƒ, íŠ¹ìˆ˜ë¬¸ì 1ê°œ í¬í•¨, ì˜ì–´ëŒ€ì†Œë¬¸ì í¬í•¨
+            // ÆĞ½º¿öµå Á¤Ã¥
+            // º¯°æ Àü. ÃÖ´ë 6ÀÚ¸® ÀÌ»ó, Æ¯¼ö¹®ÀÚ 1°³ Æ÷ÇÔ, ¿µ¾î´ë¼Ò¹®ÀÚ Æ÷ÇÔ
             builder.Services.Configure<IdentityOptions>(options =>
             {
-                // ì´ëŸ° ì•”í˜¸ ê°„ë‹¨í™”ëŠ” ë˜ë„ë¡ í•˜ì§€ë§ ê²ƒ
-                options.Password.RequiredLength = 4; // ìµœì†Œê¸¸ì´ 4ìë¦¬
-                options.Password.RequireNonAlphanumeric = false; // íŠ¹ìˆ˜ë¬¸ì ì‚¬ìš©ì•ˆí•¨
-                options.Password.RequireUppercase = false; // ëŒ€ë¬¸ì ì‚¬ìš©ì•ˆí•¨
-                options.Password.RequireLowercase = false; // ì†Œë¬¸ì ì‚¬ìš©ì•ˆí•¨
-                options.Password.RequireDigit = false; // ìˆ«ìí•„ìˆ˜ ì—¬ë¶€
+                // ÀÌ·± ¾ÏÈ£ °£´ÜÈ­´Â µÇµµ·Ï ÇÏÁö¸» °Í
+                options.Password.RequiredLength = 4; // ÃÖ¼Ò±æÀÌ 4ÀÚ¸®
+                options.Password.RequireNonAlphanumeric = false; // Æ¯¼ö¹®ÀÚ »ç¿ë¾ÈÇÔ
+                options.Password.RequireUppercase = false; // ´ë¹®ÀÚ »ç¿ë¾ÈÇÔ
+                options.Password.RequireLowercase = false; // ¼Ò¹®ÀÚ »ç¿ë¾ÈÇÔ
+                options.Password.RequireDigit = false; // ¼ıÀÚÇÊ¼ö ¿©ºÎ
             });
 
             var app = builder.Build();
@@ -47,8 +47,8 @@ namespace MyPortfolioWebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();  // ASP.NET Core Identity ê³„ì •
-            app.UseAuthorization();   // ê¶Œí•œ
+            app.UseAuthentication();  // ASP.NET Core Identity °èÁ¤
+            app.UseAuthorization();   // ±ÇÇÑ
 
             app.MapControllerRoute(
                 name: "default",
