@@ -930,6 +930,13 @@
     - HomeController Contact() Post메서드 신규 추가
     - 메일관련 작업 - Pendding
 
+### 자유게사판 수정
+
+<img src="./image/webimage01.png" width="800">
+
+<img src="./image/webimage02.png" width="800">
+
+## 11일차
 
 ### ASP.NET Core API서버
 
