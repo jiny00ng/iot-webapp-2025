@@ -974,7 +974,7 @@
 
 #### WebAPI CRUD 작업 연습
 |API|설명|Request body|Response body|
-|:--|:--|:--|:--|
+|:--|:--|:--:|:--:|
 |GET ~/api/books|모든 책정보 가져오기|None|책정보 배열|
 |GET ~/api/books/{id}|특정 책정보 가져오기|None|책 정보 한 건|
 |POST ~/api/books|새 책 추가|Book 데이터|Book 데이터|
@@ -1027,6 +1027,38 @@
 
 ### ASP.NET Core API서버(계속)
 
-#### WebAPI 서버 + 웹사이트 + 윈앱
+#### WebAPI 서버 + 웹사이트 + 윈앱(WPF)
+- 웹사이트나 WPF 윈앱에서는 DB연동 없이도 데이터 처리 가능!!!
+- Todo List 오늘할 일 API 서비스
+
+    |API|설명|Request body|Response body|
+    |:--|:--|:--:|:--:|
+    |GET /api/todoitems|모든 할 일정보 가져오기|None|할 일정보 배열|
+    |GET /api/todoitems/{id}|특정 할 일정보 가져오기|None|할 일정보 한 건|
+    |POST /api/todoitems|새 할일 추가|todoItem 데이터|todoItem 데이터|
+    |PUT /api/todoitems/{id}|기존할 일 수정|todoItem 데이터|None|
+    |DELETE /api/todoitems/{id}|기존할 일 삭제|None|None|
+
+    1. 프로젝트 생성
+    2. 패키지 설치
+    3. DB구성, 생성
+    4. 컨틀롤러 생성(내용 생략, 위에 다있음)
+
+- WPF앱 API 사용 - 데이터포털로 부산맛집정보앱, 영화즐겨찾기와 동일(GET 메서드만 사용)
+    1. WPF 프로젝트 생성
+    2. NuGet 패키지 관리에서 패키지 설치
+        - MahApps.Metro / IconPacks
+        - Microsoft.AspNet.WebApi.Client
+    3. UI 설정
+    4. 모델 및 컬렉션 설정
+    5. WebAPI 호출로 CRUD 구현
+
+    <img src="./image/web0032.png" width="600">
+
+## 13일차
+
+### ASP.NET Core API서버(계속)
+
+#### WebAPI 서버 + 웹사이트 
 
 ### AWS 클라우드 업로드
