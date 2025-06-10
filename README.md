@@ -2,6 +2,20 @@
 
 <p>IoT 개발자 과정 <a href="https://dotnet.microsoft.com/ko-kr/apps/aspnet" target="_blank" style="color:red;">ASP.NET Core</a> 학습 리포지토리</p>
 
+### 자유게사판 수정
+
+<img src="./image/webimage01.png" width="800">
+
+- 전체
+
+<img src="./image/webimage02.png" width="800">
+
+- 상세
+
+<img src="./image/webimage03.png" width="800">
+
+- 새 글 작성
+
 ## 1일차
 
 ### Web
@@ -929,12 +943,6 @@
 4. 이후 작업
     - HomeController Contact() Post메서드 신규 추가
     - 메일관련 작업 - Pendding
-
-### 자유게사판 수정
-
-<img src="./image/webimage01.png" width="800">
-
-<img src="./image/webimage02.png" width="800">
 
 ## 11일차
 

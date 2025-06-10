@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<MyPortfolioWebApp.Models.Board>
 @inject SignInManager<CustomUser> SignInManager
+@inject UserManager<CustomUser> userManager
 
 @{
     ViewData["Title"] = "자유게시판";
 
     // 페이징 변수 (Controller에서 ViewBag에 넣어줬다고 가정)
-    var startPage = ViewBag.StartPage ?? 1;
-    var endPage = ViewBag.EndPage ?? 1;
-    var page = ViewBag.Page ?? 1;
-    var totalPage = ViewBag.TotalPage ?? 1;
-    var search = ViewBag.Search ?? "";
+    var startPage = ViewBag.StartPage;
+    var endPage = ViewBag.EndPage;
+    var page = ViewBag.Page;
+    var totalPage = ViewBag.TotalPage;
+    var search = ViewBag.Search;
 }
 
 <partial name="_Notification" />
