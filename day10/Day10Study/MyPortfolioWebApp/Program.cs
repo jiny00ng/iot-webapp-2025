@@ -1,3 +1,4 @@
+ï»¿using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolioWebApp.Models;
@@ -11,30 +12,41 @@ namespace MyPortfolioWebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // ìµœëŒ€ íŒŒì¼ì—…ë¡œë“œ ìš©ëŸ‰ ì œí•œ
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 200 * 1024 * 1024;   
+            });
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                // 1024(MB), 1024(KB)
+                options.Limits.MaxRequestBodySize = 200 * 1024 * 1024; // 200MBë¡œ ì œí•œ
+            });
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            // DB¿¬°á ÃÊ±âÈ­ ¼³Á¤
+            // DBì—°ê²° ì´ˆê¸°í™” ì„¤ì •
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
                 builder.Configuration.GetConnectionString("SmartHomeConnection"),
                 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SmartHomeConnection"))
             ));
 
-            // ASP.NET Core Identity ¼³Á¤
-            // ¿øº»Àº IdentityUser -> CustomUser ·Î º¯°æ
+            // ASP.NET Core Identity ì„¤ì •
+            // ì›ë³¸ì€ IdentityUser -> CustomUser ë¡œ ë³€ê²½
             builder.Services.AddIdentity<CustomUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // ÆĞ½º¿öµå Á¤Ã¥
-            // º¯°æ Àü. ÃÖ´ë 6ÀÚ¸® ÀÌ»ó, Æ¯¼ö¹®ÀÚ 1°³ Æ÷ÇÔ, ¿µ¾î´ë¼Ò¹®ÀÚ Æ÷ÇÔ
+            // íŒ¨ìŠ¤ì›Œë“œ ì •ì±…
+            // ë³€ê²½ ì „. ìµœëŒ€ 6ìë¦¬ ì´ìƒ, íŠ¹ìˆ˜ë¬¸ì 1ê°œ í¬í•¨, ì˜ì–´ëŒ€ì†Œë¬¸ì í¬í•¨
             builder.Services.Configure<IdentityOptions>(options =>
             {
-                // ÀÌ·± ¾ÏÈ£ °£´ÜÈ­´Â µÇµµ·Ï ÇÏÁö¸» °Í
-                options.Password.RequiredLength = 4; // ÃÖ¼Ò±æÀÌ 4ÀÚ¸®
-                options.Password.RequireNonAlphanumeric = false; // Æ¯¼ö¹®ÀÚ »ç¿ë¾ÈÇÔ
-                options.Password.RequireUppercase = false; // ´ë¹®ÀÚ »ç¿ë¾ÈÇÔ
-                options.Password.RequireLowercase = false; // ¼Ò¹®ÀÚ »ç¿ë¾ÈÇÔ
-                options.Password.RequireDigit = false; // ¼ıÀÚÇÊ¼ö ¿©ºÎ
+                // ì´ëŸ° ì•”í˜¸ ê°„ë‹¨í™”ëŠ” ë˜ë„ë¡ í•˜ì§€ë§ ê²ƒ
+                options.Password.RequiredLength = 4; // ìµœì†Œê¸¸ì´ 4ìë¦¬
+                options.Password.RequireNonAlphanumeric = false; // íŠ¹ìˆ˜ë¬¸ì ì‚¬ìš©ì•ˆí•¨
+                options.Password.RequireUppercase = false; // ëŒ€ë¬¸ì ì‚¬ìš©ì•ˆí•¨
+                options.Password.RequireLowercase = false; // ì†Œë¬¸ì ì‚¬ìš©ì•ˆí•¨
+                options.Password.RequireDigit = false; // ìˆ«ìí•„ìˆ˜ ì—¬ë¶€
             });
 
             var app = builder.Build();
@@ -47,8 +59,8 @@ namespace MyPortfolioWebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();  // ASP.NET Core Identity °èÁ¤
-            app.UseAuthorization();   // ±ÇÇÑ
+            app.UseAuthentication();  // ASP.NET Core Identity ê³„ì •
+            app.UseAuthorization();   // ê¶Œí•œ
 
             app.MapControllerRoute(
                 name: "default",
